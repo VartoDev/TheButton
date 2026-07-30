@@ -1,6 +1,6 @@
 # The Button
 
-A simple web game made with Flask, HTML, CSS and JavaScript.
+A simple web game made with Flask, HTML and JavaScript.
 
 ## About
 
