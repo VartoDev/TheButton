@@ -24,10 +24,20 @@ jobs:
 
       - name: Build macOS App
         run: |
-          pyinstaller --windowed --name FlaskApp --add-data "templates:templates" --add-data "static:static" app.py
+          pyinstaller \
+            --windowed \
+            --name FlaskApp \
+            --add-data "templates:templates" \
+            --add-data "static:static" \
+            app.py
+
+      - name: Create ZIP
+        run: |
+          cd dist
+          zip -r FlaskApp-macOS.zip FlaskApp.app
 
       - name: Upload macOS App
         uses: actions/upload-artifact@v4
         with:
           name: FlaskApp-macOS
-          path: dist/FlaskApp.app
+          path: dist/FlaskApp-macOS.zip
