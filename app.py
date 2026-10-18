@@ -17,15 +17,16 @@ def start():
 
 @app.route("/highscore")  # <----- Highscore Update durch return von /click
 def highscore():
+    global Highscore
     return str(Highscore)
     
 
 @app.route("/click")  # <------ click berechnung
 def click():
-    global  Highscore
+    global Highscore
    
     click_count = session.get("click_count", 0) # | Defintion von click count
-    Highscore = session.get("Highscore", 0) # | Defintion von Highscore
+    
     
     click_count += 1
     if random.randint(1, 100) <= click_count:
@@ -34,7 +35,7 @@ def click():
         Highscore = click_count
 
     session["click_count"] = click_count 
-    session["Highscore"] = Highscore
+    
 
     return str(click_count)
 
