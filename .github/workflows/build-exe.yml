@@ -1,0 +1,29 @@
+name: EXE bauen
+
+on:
+  workflow_dispatch:   # gibt dir im Actions-Tab einen "Run workflow"-Knopf
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Pakete installieren
+        run: pip install flask pyinstaller
+
+      - name: EXE bauen
+        run: >
+          pyinstaller --onefile --name TheButton
+          --add-data "templates;templates"
+          --add-data "static;static"
+          start_exe.py
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: TheButton-Windows
+          path: dist/TheButton.exe
