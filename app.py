@@ -1,8 +1,22 @@
+mport os
 import random
+import sys
+
 from flask import Flask, render_template
 from flask import jsonify, session
 
-app = Flask(__name__)
+
+def resource_path(relative_path):
+    
+    base_path = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
+
+app = Flask(
+    __name__,
+    template_folder=resource_path("templates"),
+    static_folder=resource_path("static"),
+)
 
 app.secret_key = "5405897392830934598734593"
 
