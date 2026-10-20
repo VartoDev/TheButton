@@ -7,6 +7,7 @@ app = Flask(__name__)
 app.secret_key = "5405897392830934598734593"
 
 #--* Variablen *---
+Highscore = 0
 
 
 @app.route("/") # <---- Index HTML
